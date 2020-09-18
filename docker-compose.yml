@@ -1,0 +1,9 @@
+version: '3'
+services:
+  square:
+    build: .
+    ports:
+      - 8182:5000
+    volumes:
+      - .:/exploradome_tangram
+      
