@@ -1,7 +1,10 @@
 from flask import Flask, jsonify, request
 from flask_restful import Resource, Api, reqparse
 import os
-import main
+from tangram_app.tangram_game import tangram_game
+from tangram_app.metrics import get_classification_report_pics
+from tangram_app.predictions import get_predictions_with_distances, get_predictions
+from tangram_app.processing import preprocess_img, preprocess_img_2
 
 app = Flask(__name__)
 api = Api(app)
@@ -19,7 +22,7 @@ class Prediction(Resource):
         args = parser.parse_args()
         link = args['link']
         side = args['side']
-        res = main.tangram_game(video=link, side=side, prepro=preprocess_img_2, pred_func=get_predictions_with_distances)
+        res = tangram_game(video=link, side=side, prepro=preprocess_img_2, pred_func=get_predictions_with_distances)
         return {'classification report': res}, 200
 
 api.add_resource(HelloWorld, '/hello')
