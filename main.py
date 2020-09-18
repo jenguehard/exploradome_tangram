@@ -26,8 +26,7 @@ if __name__ == '__main__':
 
     # check args.side value
     if args.side:
-        assert args.side in ["right", "left",
-                             "none"], "Select a valid side : left - right"
+        assert args.side in ["right", "left", "none"], "Select a valid side : left - right"
 
     if args.mode:
         if args.mode.endswith((".jpg", ".png")):
